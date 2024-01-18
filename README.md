@@ -145,5 +145,5 @@ $ curl -L https : / /badvendor . com 1 sudo sh
 остается в рабочем состоянии, поэтому граница между загрузкой и нормальной работой
 по своей сути немного размыта.
 
-
+![linux loading](https://github.com/safakun/linux_sysadmin/blob/main/linux_loading.png)
 
