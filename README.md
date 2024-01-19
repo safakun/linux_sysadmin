@@ -333,4 +333,26 @@ $ systemctl list-units --type=target
 - PartOf - Аналогично Requires, но вли яет только на запуск и остановку
 - Сonf1iсts - Отрицательные зависимости; не может взаимодействовать с этими единицами
 
+- Теперь внимательно рассмотрим несколько директив, используемых в модульных файлах. Вот модульный файл для веб-сервера NGINX, nginx.service:
+```bash
+[Unit]
+Description=The nginx НТTР and reverse proxy server
+After=network.target remote-fs.target nss-lookup.target
 
+[Service]
+Type=forking
+PIDFile=/run/nginx.pid
+ExecStartPre=/usr/bin/rm -f /run/nginx.pid
+ExecStartPre=/usr/sbin/nginx -t
+ExecStart=/usr/sbin/nginx
+ExecReload=/bin/kill -s HUP $МAINPID
+KillMode=process
+KillSignal=SIGQUIT
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+```
+
+- Эта служба имеет тип forking, что означает, что команда запуска должна завершить­ся, даже если демон продолжает работать в фоновом режиме
