@@ -500,3 +500,45 @@ redhat$ semodule -d
 
 ### Signals
 ![linux loading](https://github.com/safakun/linux_sysadmin/blob/main/signals.png) 
+
+- Получить список названий сигналов:
+```bash
+ubuntu$ kill -l
+```
+
+- Синтаксис команды kill:
+kill [-сигнал] pid
+
+Команда killall уничтожает процессы, заданные именем. Например, следующая команда уничтожает все процессы веб-сервера Apache.
+```bash
+ubuntu$ sudo killall httpd
+```
+Команда pkill осуществляет поиск процессов, заданных именами (или другими атрибутами, например EUID), и посылает найденным процессам сигнал. Например, следующая команда посылает сигнал TERM всем процессам, выполняемым от имени пользователя ben.
+```bash
+$ sudo pkill -u bеn
+```
+- Команда ps - основной инструмент, которым системный администратор пользует­ся для текущего контроля процессов. 
+
+```
+redhat$ ps aux
+redhat$ ps lax
+$ ps aux | grep sshd
+$ ps aux | grep -v grep | grep sshd
+$ pidof /usr/bin/bash
+$ pgrep bash
+```
+
+- интерактивный мониторинг процессов с помощью команды top
+```bash
+ubuntu$ top
+freebsd$ top -P
+```
+
+```bash
+$ nice -n 5 /bin/lonqtask // Понижаем приоритет (увеличиваем фактор уступчивости) на 
+$ sudo renice -5 8829 // Задаем фактор уступчивости равным 5
+$ sudo renice 5 -u boggs // Задаем фактор уступчивости процессов пользователя boggs равным 5
+```
+
+
+
